@@ -6,13 +6,13 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:41:40 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/05/03 20:01:57 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:48:45 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "push_swap.h"
 
-stack	*create_stack(int content)
+stack	*create_node(int content)
 {
 	stack	*ptr;
 	stack	a;
@@ -29,17 +29,30 @@ stack	*create_stack(int content)
 
 void    add_stack(stack **lst, stack *new)
 {
-    if (lst)
+    if (lst && *lst)
     {
         new->next = *lst;
         new->prev = (*lst)->prev;
-        (*lst)->prev->next = new;
+        ((*lst)->prev)->next = new;
         (*lst)->prev = new;
     }
     *lst = new;
 }
 
-stack   *extract_stack(stack **lst)
+void    add_below(stack **lst, stack *new)
+{
+    if (lst && *lst)
+    {
+        (*lst)->prev->next = new;
+        new->prev =(*lst)->prev;
+        (*lst)->prev = new;
+        new->next = *lst;
+    }
+    else
+        *lst = new;
+}
+
+stack   *extract_node(stack **lst)
 {
     stack   *aux;
 
@@ -82,4 +95,21 @@ void    clear_all_stack(stack **lst)
     }
     clear_stack(*lst);
     *lst = NULL;
+}
+
+int stack_sorted(stack **lst)
+{
+    stack   *aux;
+
+    if (lst && *lst)
+    {
+        aux = *lst;
+        while (aux->next->content != (*lst)->content)
+        {
+            if (aux->content + 1 != aux->next->content)
+                return (0);
+            aux = aux->next;
+        }
+    }
+    return (1);
 }

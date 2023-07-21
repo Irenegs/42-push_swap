@@ -27,7 +27,7 @@ LIBS_TARGET := libft/libft.a
 INCS        := include    \
     libft/include
 
-SRCS        := prueba_operaciones.c stack_functions.c stack_operations.c
+SRCS        := push_swap.c radix_sort.c validation.c operations.c stack_functions.c stack_operations.c pintastack.c
 
 OBJS        := $(SRCS:%.c=%.o)
 DEPS        := $(OBJS:.o=.d)
