@@ -59,10 +59,6 @@ do
 done
 '
 : '
-ARG="2 6 5 7 10 8 4 3 9 1"
-./push_swap $ARG | ./checker_linux $ARG
-'
-
 echo "Random Tests n=100"
 
 T=15
@@ -74,7 +70,7 @@ do
     echo -n "Instrucciones: " && ./push_swap $ARG | wc -l
     ./push_swap $ARG | ./checker_linux $ARG
 done
-
+'
 : '
 echo "Random Tests n=500"
 
@@ -88,7 +84,8 @@ do
     ./push_swap $ARG | ./checker_linux $ARG
 done
 '
-: '
-ARG=$(shuf -i 0-1000 -n 10 | tr "\n" " ")
+
+ARG=$(shuf -i 0-1000 -n 80 | tr "\n" " ")
+echo $ARG
 ./push_swap $ARG
-'
+#./push_swap $ARG | ./checker_linux $ARG

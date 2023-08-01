@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 18:57:12 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/07/01 20:03:36 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/07/27 19:16:51 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,23 @@ void    swap(stack **lst)
 {
     int aux;
     
+    if (lst && *lst)
+    {
     aux = (*lst)->content;
     (*lst)->content = (*lst)->next->content;
     (*lst)->next->content = aux;
+    }
 }
 
 void    rotate(stack **lst, int way)
 {
+    if (lst && *lst)
+    {
     if (way > 0)
         *lst = (*lst)->next;
     else
         *lst = (*lst)->prev;
+    }
 }
 
 void    push(stack **src, stack **dst)
