@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 20:47:22 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/04 19:12:11 by irgonzal         ###   ########.fr       */
+/*   Created: 2023/08/09 18:02:43 by irgonzal          #+#    #+#             */
+/*   Updated: 2023/08/10 20:02:32 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "push_swap.h"
 
-int main(int argc, char **argv)
+void    all_back(stack **orig, stack **aux)
 {
-    stack   *a;
-    
-    if (argc == 1)
-        exit (0);
-    a = NULL;
-    if (lst2stack(argc, argv, &a) == 1)
-    {
-        write(1, "Error\n", 6);
-        return (0);
-    }
-    //write(1, "\nINI\n", 5);
-    //pintastack(&a);
-    sort_original(&a, argc - 1);
-    //write(1, "\nFIN\n", 5);
-    //pintastack(&a);
-    //printf("Ordenado %d", stack_sorted(&a));
+    while (*aux)
+        do_push(aux, orig, 'a');
+}
+
+void    sort_original(stack **orig, int n)
+{
+    if (n < 99)
+        sort_stack(orig);
+    else
+        radix_bin_sort(orig, n);
 }

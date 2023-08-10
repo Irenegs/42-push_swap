@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:26:40 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/07/27 19:27:21 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/10 19:55:38 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ int 	lst2stack(int argc, char **argv, stack **lst);
 void    sort_auxiliar(stack **orig, stack **aux);
 void    all_back(stack **orig, stack **aux);
 void    sort_original(stack **orig, int n);
-//void    sort_original(stack **orig);
+void    radix_bin_sort(stack **orig, int n);
+void    sort_stack(stack **orig);
 int		stack_sorted(stack **lst);
 int 	stack_rev_sorted(stack **lst);
 int 	*validate_input_normal(int argc, char **argv);
 /*int 	arg_isint(char *str, int value);*/
 
-void pintastack(stack **lst);
-void pintainv(stack **lst);
+//void pintastack(stack **lst);
+//void pintainv(stack **lst);
 #endif

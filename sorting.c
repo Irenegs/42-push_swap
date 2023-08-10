@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 20:02:49 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/07/20 18:27:28 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/10 19:40:59 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void    sort_auxiliar(stack **orig, stack **aux)
 }
 */
 
-
 void    sort_auxiliar(stack **orig, stack **aux)
 {
     if ((*aux)->content < (*aux)->next->content)
@@ -47,14 +46,7 @@ void    sort_auxiliar(stack **orig, stack **aux)
     }
 }
 
-
-void    all_back(stack **orig, stack **aux)
-{
-    while (*aux)
-        do_push(aux, orig, 'a');
-}
-
-void    sort_original(stack **orig)
+void    sort_stack(stack **orig)
 {
     stack   *aux;
     int     p;
