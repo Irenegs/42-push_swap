@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: irgonzal <irgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:41:40 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/07/27 18:57:17 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/12 13:35:37 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,39 +95,4 @@ void    clear_all_stack(stack **lst)
     }
     clear_stack(*lst);
     *lst = NULL;
-}
-
-int stack_sorted(stack **lst)
-{
-    stack   *aux;
-    
-    if (lst && *lst)
-    {
-        aux = *lst;
-        while (aux->next->content != (*lst)->content)
-        {
-            if (aux->content + 1 != aux->next->content)
-                return (0);
-            aux = aux->next;
-        }
-    }
-    return (1);
-}
-
-
-int stack_rev_sorted(stack **lst)
-{
-    stack   *aux;
-    
-    if (lst && *lst)
-    {
-        aux = *lst;
-        while (aux->next->content != (*lst)->content)
-        {
-            if (aux->content != aux->next->content + 1)
-                return (0);
-            aux = aux->next;
-        }
-    }
-    return (1);
 }

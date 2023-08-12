@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: irgonzal <irgonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:13:39 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/10 21:17:01 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/12 13:25:46 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,45 +116,3 @@ int lst2stack(int argc, char **argv, stack **lst)
     free (numbers);
     return (0);
 }
-
-/*
-int value_isunique(int value, stack **lst)
-{
-    stack *aux;
-    
-    if (*lst)
-    {
-        if (value == (*lst)->content)
-            return (0);
-        aux = (*lst)->next;
-        while (aux != *lst)
-        {
-            if (value == aux->content)
-                return (0);
-            aux = aux->next;
-        }
-    }
-    return (1);
-    
-int validate_input(int n, char **arg, stack **lst)
-{
-    int     i;
-    int     value;
-    stack   *current;
-
-    i = 1;
-    while (i < n)
-    {
-        value = ft_atoi(arg[i]);
-        if (arg_isint(arg[i], value) == 0 && value_isunique(value, lst) == 1)
-        {
-            current = create_node(value);
-            add_below(lst, current);
-        }
-        else
-            return (1);
-        i++;
-    }
-    return (0);
-}
-*/
