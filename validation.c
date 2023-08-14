@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irgonzal <irgonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:13:39 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/12 13:25:46 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:46:52 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int arg_isint(char *str, int value)
     int     j;
 
     numberstr = ft_itoa(value);
+    if (!numberstr)
+        return (1);
     i = 0;
     j = 0;
     //printf("\narg: [%s]\nitoa: [%s]\n", str, numberstr);
@@ -37,7 +39,9 @@ int arg_isint(char *str, int value)
         j++;
     //printf("\ni,j:[%d,%d]\n", i, j);
     //printf("\nReturn:[%d]\n", str[i + j] - numberstr[j]);
-    return (str[i + j] - numberstr[j]);
+    i = str[i + j] - numberstr[j];
+    free(numberstr);
+    return (i);
 }
 
 int value_isunique_normal(int i, int* numbers, int *norm)

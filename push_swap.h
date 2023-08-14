@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irgonzal <irgonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:26:40 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/12 17:24:28 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:36:22 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void    all_back(stack **orig, stack **aux);
 void    sort_original(stack **orig, int n);
 void    radix_bin_sort(stack **orig, int n);
 void    sort_stack(stack **orig);
-int		stack_sorted(stack **lst);
-int 	stack_rev_sorted(stack **lst);
+int		stack_sorted(stack **lst, int order);
+//int 	stack_rev_sorted(stack **lst);
 int 	all_sorted(stack **a, stack **b);
 int 	*validate_input_normal(int argc, char **argv);
 int 	just_rotate(stack **s, int order);
-/*int 	arg_isint(char *str, int value);*/
+int 	way_to_rotate(stack **s, int order);
 
 void pintastack(stack **lst);
 //void pintainv(stack **lst);

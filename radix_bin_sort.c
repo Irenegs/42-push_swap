@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 19:14:33 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/10 19:21:49 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/13 19:13:49 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int max_bit(int n)
     return (i);
 }
 
-void    separate_by_bit(stack **orig, stack **b, int n, int bit)
+void    separate_by_bit(stack **a, stack **b, int n, int bit)
 {
     /*int count;
     
@@ -36,17 +36,17 @@ void    separate_by_bit(stack **orig, stack **b, int n, int bit)
     else
         count = 1 << bit;
     printf("count %d\n", count);*/
-    while ((*orig) && n > 0)
+    while ((*a) && n > 0)
     {
-        if ((((*orig)->content >> bit) & 1) != 0)
-            do_rotate(orig, 1, 'a');
+        if ((((*a)->content >> bit) & 1) != 0)
+            do_rotate(a, 1, 'a');
         else
-            do_push(orig, b, 'b');
+            do_push(a, b, 'b');
         n--;
     }
 }
 
-void    radix_bin_sort(stack **orig, int n)
+void    radix_bin_sort(stack **a, int n)
 {
     int     mbit;
     stack   *b;
@@ -56,14 +56,14 @@ void    radix_bin_sort(stack **orig, int n)
     mbit = max_bit(n);
     //printf("max bit %d\n", mbit);
     b = NULL;
-    while (bit <= mbit)
+    while (stack_sorted(a, 1) != 1 && bit <= mbit)
     {
         //printf("bit %d\n", bit);
-        separate_by_bit(orig, &b, n, bit);
-        //pintastack(orig);
+        separate_by_bit(a, &b, n, bit);
+        //pintastack(a);
         //pintastack(&b);
-        all_back(orig, &b);
+        all_back(a, &b);
         bit++;
     }
-    //pintastack(orig);
+    //pintastack(a);
 }

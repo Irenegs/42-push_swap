@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:26:09 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/07/01 18:19:07 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/13 19:17:58 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void pruebas()
     add_below(&stack_a, stack_b);
     pintastack(&stack_a);
     pintainv(&stack_a);
-    printf("orden %d\n", stack_sorted(&stack_a));
+    printf("orden %d\n", stack_sorted(&stack_a, 1));
     stack *stack_d = extract_node(&stack_a);
     stack *stack_e = extract_node(&stack_a);
     printf("Vacio: %p", stack_a);

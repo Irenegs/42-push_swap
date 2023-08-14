@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irgonzal <irgonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:02:43 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/12 17:25:44 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:42:06 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int just_rotate(stack **s, int order)
             jumps = 1;
         while (aux != (*s) && jumps < 2)
         {
-            if (aux->content - (*s)->content != order)
+            if (aux->content - aux->prev->content != order)
                 jumps++;
             aux = aux->next;
         }
@@ -33,22 +33,62 @@ int just_rotate(stack **s, int order)
     return (jumps);
 }
 
-void    all_back(stack **orig, stack **aux)
+int way_to_rotate(stack **s, int order)
 {
-    while (*aux)
-        do_push(aux, orig, 'a');
+    stack   *right;
+    stack   *left;
+    
+    if (!s || !(*s))
+        return (0);
+    right = (*s)->next;
+    left = (*s)->prev;
+    while (right != left && right != left->next)
+    {
+        //printf("way %d %d %d\n", right->content - right->prev->content, left->content - left->prev->content,order);
+        if (right->content - right->prev->content != order)
+            return (1);
+        else if (left->content - left->prev->content != order)
+            return (-1);
+        right = right->next;
+        left = left->prev;
+    }
+    return (1);
 }
 
-int stack_sorted(stack **lst)
+void    all_back(stack **a, stack **b)
+{
+    while (*b)
+        do_push(b, a, 'a');
+}
+/*
+int stack_sorted(stack **s, int order)
 {
     stack   *aux;
     
-    if (lst && *lst && (*lst)->content != (*lst)->next->content)
+    if (s && *s && (*s)->content != (*s)->next->content)
     {
-        aux = *lst;
-        while (aux->next->content != (*lst)->content)
+        aux = *s;
+        while (aux->next->content != (*s)->content)
         {
-            if (aux->content + 1 != aux->next->content)
+            if (aux->next->content - aux->content != order)
+                return (0);
+            aux = aux->next;
+        }
+    }
+    return (1);
+}
+*/
+
+int stack_sorted(stack **s, int order)
+{
+    stack   *aux;
+    
+    if (s && *s && (*s)->content != (*s)->next->content)
+    {
+        aux = *s;
+        while (aux->next->content != (*s)->content)
+        {
+            if ((aux->next->content - aux->content)*order < 0)
                 return (0);
             aux = aux->next;
         }
@@ -56,14 +96,15 @@ int stack_sorted(stack **lst)
     return (1);
 }
 
-int stack_rev_sorted(stack **lst)
+/*
+int stack_rev_sorted(stack **s)
 {
     stack   *aux;
     
-    if (lst && *lst && (*lst)->content != (*lst)->next->content)
+    if (s && *s && (*s)->content != (*s)->next->content)
     {
-        aux = *lst;
-        while (aux->next->content != (*lst)->content)
+        aux = *s;
+        while (aux->next->content != (*s)->content)
         {
             if (aux->content != aux->next->content + 1)
                 return (0);
@@ -72,15 +113,13 @@ int stack_rev_sorted(stack **lst)
     }
     return (1);
 }
-
+*/
 int all_sorted(stack **a, stack **b)
 {
-    if (stack_sorted(a) == 1)
+    if (stack_sorted(a, 1) == 1)
     {
-        //printf("\na sorted\n");
-        if (stack_rev_sorted(b) == 1)
+        if (stack_sorted(b, -1) == 1)
         {
-            //printf("\nb sorted \n");
             if (a && b && *a && *b)
             {
                 if ((*a)->content > (*b)->content)
@@ -93,10 +132,20 @@ int all_sorted(stack **a, stack **b)
     return (0);
 }
 
-void    sort_original(stack **orig, int n)
+void    sort_original(stack **a, int n)
 {
-    if (n > 1 && n < 99)
-        sort_stack(orig);
-    else
-        radix_bin_sort(orig, n);
+    if (stack_sorted(a, 1) != 1)
+    {
+        //printf("just rotate %d\n", just_rotate(a, 1));
+        if (just_rotate(a, 1) == 1)
+        {
+            //printf("way rotate %d\n", way_to_rotate(a, 1));
+            while (stack_sorted(a, 1) != 1)
+                do_rotate(a, way_to_rotate(a, 1), 'a');
+        }
+        if (1 < n && n < 99)
+            sort_stack(a);
+        else
+            radix_bin_sort(a, n);
+    }
 }

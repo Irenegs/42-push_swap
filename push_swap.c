@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 20:47:22 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/04 19:12:11 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/14 18:53:13 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ int main(int argc, char **argv)
         write(1, "Error\n", 6);
         return (0);
     }
-    //write(1, "\nINI\n", 5);
-    //pintastack(&a);
     sort_original(&a, argc - 1);
-    //write(1, "\nFIN\n", 5);
-    //pintastack(&a);
-    //printf("Ordenado %d", stack_sorted(&a));
+    clear_all_stack(&a);
 }
