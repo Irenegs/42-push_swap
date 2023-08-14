@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irgonzal <irgonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:41:40 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/12 13:35:37 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:27:11 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,84 +15,87 @@
 stack	*create_node(int content)
 {
 	stack	*ptr;
-	stack	a;
+	stack	aux;
 
 	ptr = malloc(sizeof(stack));
+    //printf("mallocing\n");
 	if (!ptr)
 		return (NULL);
-	a.content = content;
-	a.next = ptr;
-	a.prev = ptr;
-    *ptr = a;
+	aux.content = content;
+	aux.next = ptr;
+	aux.prev = ptr;
+    *ptr = aux;
 	return (ptr);
 }
 
-void    add_stack(stack **lst, stack *new)
+void    add_stack(stack **s, stack *new)
 {
-    if (lst && *lst)
+    if (s && *s)
     {
-        new->next = *lst;
-        new->prev = (*lst)->prev;
-        ((*lst)->prev)->next = new;
-        (*lst)->prev = new;
+        new->next = *s;
+        new->prev = (*s)->prev;
+        ((*s)->prev)->next = new;
+        (*s)->prev = new;
     }
-    *lst = new;
+    *s = new;
 }
 
-void    add_below(stack **lst, stack *new)
+void    add_below(stack **s, stack *new)
 {
-    if (lst && *lst)
+    if (s && *s)
     {
-        (*lst)->prev->next = new;
-        new->prev =(*lst)->prev;
-        (*lst)->prev = new;
-        new->next = *lst;
+        (*s)->prev->next = new;
+        new->prev =(*s)->prev;
+        (*s)->prev = new;
+        new->next = *s;
     }
     else
-        *lst = new;
+        *s = new;
 }
 
-stack   *extract_node(stack **lst)
+stack   *extract_node(stack **s)
 {
     stack   *aux;
 
-    if (!*lst)
+    if (!*s)
         return (NULL);
-    aux = *lst;
-    if ((*lst)->next == *lst)
-        *lst = NULL;
+    aux = *s;
+    if ((*s)->next == *s)
+        *s = NULL;
     else
     {
-        (*lst)->prev->next = (*lst)->next;
-        (*lst)->next->prev = (*lst)->prev;
-        *lst = (*lst)->next;
+        (*s)->prev->next = (*s)->next;
+        (*s)->next->prev = (*s)->prev;
+        *s = (*s)->next;
     }
     aux->next = aux;
     aux->prev = aux;
     return (aux);
 }
-
+/*
 void    clear_stack(stack *s)
 {
-    s->next = NULL;
     free(s);
 }
-
-void    clear_all_stack(stack **lst)
+*/
+void    clear_all_stack(stack **s)
 {
     stack   *a;
     stack   *b;
 
-    if (!lst || !*lst)
+    if (!s || !*s)
         return ;
-    a = *lst;
+    a = (*s)->next;
     b = a->next;
-    while (b != *lst)
+    (*s)->next = NULL;
+    while (a->next)
     {
+        //printf("getting free...\n");
+        free(a);
+        //printf("got free!\n");
         a = b;
         b = a->next;
-        clear_stack(b);
     }
-    clear_stack(*lst);
-    *lst = NULL;
+    //free(*s);
+    //*s = NULL;
 }

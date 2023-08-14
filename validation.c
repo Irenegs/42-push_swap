@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:13:39 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/13 18:46:52 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:31:12 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int arg_isint(char *str, int value)
         return (1);
     i = 0;
     j = 0;
-    //printf("\narg: [%s]\nitoa: [%s]\n", str, numberstr);
     if (str[i] == '+' || str[i] == '-')
         i++;
     if (numberstr[0] == '-')
@@ -31,7 +30,10 @@ int arg_isint(char *str, int value)
     while (str[i]  == '0')
         i++;
     if (str[i] == '\0' && value == 0)
+    {
+        free(numberstr);
         return (0);
+    }
     //printf("\ni,j:[%d,%d]\n", i, j);
     if (j == 1)
         i--;

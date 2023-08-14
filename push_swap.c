@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 20:47:22 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/14 18:53:13 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:13:33 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ int main(int argc, char **argv)
     }
     sort_original(&a, argc - 1);
     clear_all_stack(&a);
+    free(a);
 }
