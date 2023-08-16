@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 18:57:12 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/07/27 19:16:51 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:37:37 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void    swap(stack **lst)
     
     if (lst && *lst)
     {
-    aux = (*lst)->content;
-    (*lst)->content = (*lst)->next->content;
-    (*lst)->next->content = aux;
+        aux = (*lst)->content;
+        (*lst)->content = (*lst)->next->content;
+        (*lst)->next->content = aux;
     }
 }
 

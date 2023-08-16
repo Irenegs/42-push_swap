@@ -6,21 +6,19 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:26:40 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/14 19:11:20 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:13:31 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-#include "libft/libft.h"
+# include "libft/libft.h"
 
-#include <stdio.h>
-
-typedef struct d_list
+typedef struct t_list
 {
-	int			    content;
-	struct d_list	*next;
-    struct d_list   *prev;
+    int             content;
+	struct t_list   *next;
+    struct t_list   *prev;
 }					stack;
 
 stack	*create_node(int content);

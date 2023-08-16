@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:41:40 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/14 19:27:11 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:36:38 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ stack	*create_node(int content)
 	stack	aux;
 
 	ptr = malloc(sizeof(stack));
-    //printf("mallocing\n");
 	if (!ptr)
 		return (NULL);
 	aux.content = content;
@@ -45,7 +44,7 @@ void    add_below(stack **s, stack *new)
     if (s && *s)
     {
         (*s)->prev->next = new;
-        new->prev =(*s)->prev;
+        new->prev = (*s)->prev;
         (*s)->prev = new;
         new->next = *s;
     }
@@ -72,12 +71,7 @@ stack   *extract_node(stack **s)
     aux->prev = aux;
     return (aux);
 }
-/*
-void    clear_stack(stack *s)
-{
-    free(s);
-}
-*/
+
 void    clear_all_stack(stack **s)
 {
     stack   *a;
@@ -90,12 +84,8 @@ void    clear_all_stack(stack **s)
     (*s)->next = NULL;
     while (a->next)
     {
-        //printf("getting free...\n");
         free(a);
-        //printf("got free!\n");
         a = b;
         b = a->next;
     }
-    //free(*s);
-    //*s = NULL;
 }

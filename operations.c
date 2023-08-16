@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:35:18 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/07/01 17:57:37 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:10:33 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void    do_rotate(stack **lst, int way, char stack_name)
 
 void    do_push(stack **src, stack **dst, char dst_name)
 {
-    //estaría bien que cambiara los tamaños de los stacks
     write(1, "p", 1);
     write(1, &dst_name, 1);
     write(1, "\n", 1);

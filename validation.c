@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:13:39 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/14 19:31:12 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:16:44 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,43 @@ int arg_isint(char *str, int value)
     int     i;
     int     j;
 
-    numberstr = ft_itoa(value);
-    if (!numberstr)
-        return (1);
     i = 0;
     j = 0;
     if (str[i] == '+' || str[i] == '-')
         i++;
-    if (numberstr[0] == '-')
-        j++;
     while (str[i]  == '0')
         i++;
+    if (str[i] == '\0' && value == 0)
+        return (0);
+    numberstr = ft_itoa(value);
+    if (!numberstr)
+        return (1);
+    if (numberstr[0] == '-')
+    {
+        j++;
+        i--;
+    }
+    while (str[i + j] == numberstr[j] && numberstr[j] != '\0')
+        j++;
+    i = str[i + j] - numberstr[j];
+    free(numberstr);
+    return (i);
+}
+/*
     if (str[i] == '\0' && value == 0)
     {
         free(numberstr);
         return (0);
     }
-    //printf("\ni,j:[%d,%d]\n", i, j);
     if (j == 1)
         i--;
     while (str[i + j] == numberstr[j] && numberstr[j] != '\0')
         j++;
-    //printf("\ni,j:[%d,%d]\n", i, j);
-    //printf("\nReturn:[%d]\n", str[i + j] - numberstr[j]);
     i = str[i + j] - numberstr[j];
     free(numberstr);
     return (i);
 }
+*/
 
 int value_isunique_normal(int i, int* numbers, int *norm)
 {
@@ -68,6 +78,15 @@ int value_isunique_normal(int i, int* numbers, int *norm)
     return (value);
 }
 
+void    *get_free(int *pointer_1, int *pointer_2)
+{
+    if (pointer_1)
+        free(pointer_1);
+    if (pointer_2)
+        free(pointer_2);
+    return (NULL);
+}
+
 int *validate_input_normal(int argc, char **argv)
 {
     int *numbers;
@@ -78,23 +97,13 @@ int *validate_input_normal(int argc, char **argv)
     numbers = malloc((argc - 1) * sizeof(int));
     norm =  malloc((argc - 1) * sizeof(int));
     if (!numbers || !norm)
-    {
-        free(numbers);
-        free(norm);
-        return (NULL);
-    }
+        return (get_free(numbers, norm));
     while (i < argc - 1)
     {
         numbers[i] = ft_atoi(argv[i + 1]);
         norm[i] = value_isunique_normal(i, numbers, norm);
-        //printf("\n[i:%d]\n", i);
         if (arg_isint(argv[i + 1], numbers[i]) != 0 || norm[i] == -1)
-        {
-            //printf("\n[IF %d, %d]\n", arg_isint(argv[i], numbers[i]), norm[i]);
-            free(numbers);
-            free(norm);
-            return (NULL);
-        }
+            return (get_free(numbers, norm));
         i++;
     }
     free(numbers);

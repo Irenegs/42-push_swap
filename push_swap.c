@@ -6,7 +6,7 @@
 /*   By: irgonzal <irgonzal@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 20:47:22 by irgonzal          #+#    #+#             */
-/*   Updated: 2023/08/14 19:13:33 by irgonzal         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:09:04 by irgonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(int argc, char **argv)
 {
     stack   *a;
-    
+
     if (argc == 1)
         exit (0);
     a = NULL;
