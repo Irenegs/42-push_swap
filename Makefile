@@ -47,7 +47,7 @@ LDLIBS      := $(addprefix -l,$(LIBS))
 # MAKEFLAGS make flags
 
 RM          := rm -f
-MAKEFLAGS   += --silent --no-print-directory
+MAKEFLAGS   += --no-print-directory
 
 #------------------------------------------------#
 #   RECIPES                                      #
@@ -92,4 +92,4 @@ re:
 #------------------------------------------------#
 
 .PHONY: clean fclean re
-.SILENT:
+#.SILENT:
